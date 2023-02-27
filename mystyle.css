@@ -1,1 +1,69 @@
-/* Add your own CSS under here */
+/* Style for the table */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  th {
+    background-color: #343a40;
+    color: #fff;
+    text-align: left;
+    padding: 12px;
+  }
+  
+  td {
+    border: 1px solid #ddd;
+    padding: 12px;
+  }
+  
+  /* Style for the navigation bar */
+  .navbar {
+    background-color: #343a40;
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .nav-link {
+    color: #fff;
+  }
+  
+  /* Style for the header */
+  .starter-template {
+    margin-top: 40px;
+  }
+  
+  .starter-template h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .starter-template p {
+    font-size: 24px;
+  }
+  
+  /* Style for the section */
+  section {
+    margin-top: 40px;
+  }
+  
+  /* Responsive styles */
+  @media only screen and (max-width: 600px) {
+    .starter-template h1 {
+      font-size: 36px;
+    }
+  
+    .starter-template p {
+      font-size: 20px;
+    }
+  
+    th {
+      font-size: 16px;
+    }
+  
+    td {
+      font-size: 16px;
+    }
+  }
+  

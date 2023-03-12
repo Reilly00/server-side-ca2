@@ -1,16 +1,27 @@
 <?php
 require_once('database.php');
 
-$queryRecipes = 'SELECT r.recipe_id, r.recipe_title, r.recipe_description, r.recipe_image, r.recipe_cooking_time, r.recipe_instructions, GROUP_CONCAT(CONCAT_WS(": ", i.ingredient_name, i.ingredient_quantity, i.ingredient_unit)) AS ingredients
-                FROM recipes r 
-                INNER JOIN ingredients i 
-                ON r.recipe_id = i.recipe_id 
-                GROUP BY r.recipe_id
-                ORDER BY r.recipe_id';
-$statement = $db->prepare($queryRecipes);
-$statement->execute();
-$recipes = $statement->fetchAll();
-$statement->closeCursor();
+// Get the recipe details based on the ID passed as a parameter
+if (isset($_GET['id'])) {
+  $recipeId = $_GET['id'];
+  $queryRecipeDetails = 'SELECT r.recipe_title, r.recipe_description, r.recipe_image, r.recipe_cooking_time, r.recipe_instructions, GROUP_CONCAT(CONCAT_WS(": ", i.ingredient_name, i.ingredient_quantity, i.ingredient_unit)) AS ingredients
+                        FROM recipes r 
+                        INNER JOIN ingredients i 
+                        ON r.recipe_id = i.recipe_id 
+                        WHERE r.recipe_id = :recipeId
+                        GROUP BY r.recipe_id';
+  $statement = $db->prepare($queryRecipeDetails);
+  $statement->bindValue(':recipeId', $recipeId);
+  $statement->execute();
+  $recipeDetails = $statement->fetch();
+  $statement->closeCursor();
+}
+
+// If the recipe ID is not set or no recipe was found, redirect to the index page
+if (!isset($recipeDetails)) {
+  header('Location: index.php');
+  exit;
+}
 ?>
 
 <!doctype html>
@@ -21,7 +32,7 @@ $statement->closeCursor();
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.80.0">
-    <title>Recipe Website</title>
+    <title>Starter Template · Bootstrap v5.0</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -53,32 +64,29 @@ $statement->closeCursor();
 
 <main class="container">
 
-<header class="hero">
-<div class="hero-container">
-  <div class="hero-text">
-    <h1>Simply the best for your diet</h1>
-  </div>
-</div>
-</header>
+<div>
+<h1><?php echo $recipeDetails['recipe_title']; ?></h1>
+  <p><?php echo $recipeDetails['recipe_description']; ?></p>
+  <img src="<?php echo $recipeDetails['recipe_image']; ?>" alt="<?php echo $recipeDetails['recipe_title']; ?>">
 
-<div class="recipes-list">
-  <?php foreach ($recipes as $recipe) : ?>
-    <div class="recipe">
-      <a href="recipe_details.php?id=<?php echo $recipe['recipe_id']; ?>">
-        <img src="<?php echo $recipe['recipe_image']; ?>" alt="<?php echo $recipe['recipe_title']; ?>" class="img recipe-img"/>
-      </a>
-      <h5><?php echo $recipe['recipe_title']; ?></h5>
-      <p>Cooking time in minutes: <?php echo $recipe['recipe_cooking_time']; ?></p>
-    </div>
-  <?php endforeach; ?>
+  <h2>Ingredients</h2>
+  <ul>
+    <?php 
+    $ingredients = explode(',', $recipeDetails['ingredients']);
+    foreach ($ingredients as $ingredient) {
+      echo '<li>' . $ingredient . '</li>';
+    }
+    ?>
+  </ul>
+
+  <h2>Instructions</h2>
+  <p><?php echo $recipeDetails['recipe_instructions']; ?></p>
+
+  <h2>Cooking Time</h2>
+  <p><?php echo $recipeDetails['recipe_cooking_time']; ?> minutes</p>
 </div>
 
 </main><!-- /.container -->
     <script src="js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
-
-<!-- References: 
-    https://www.youtube.com/watch?v=524ycUqs3f0&t=23s
-    https://www.youtube.com/watch?v=-8LTPIJBGwQ
--->

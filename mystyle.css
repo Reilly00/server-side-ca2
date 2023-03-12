@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
 /* Style for the table */
 table {
     border-collapse: collapse;
@@ -42,10 +44,156 @@ table {
   .starter-template p {
     font-size: 24px;
   }
+
+  .navbar-brand {
+    font-family: 'Indie Flower', cursive;
+    font-size: 24px;
+}
   
   /* Style for the section */
   section {
     margin-top: 40px;
+  }
+
+  .hero{
+    height: 40vh;
+    background: url("main.jpeg") center/cover no-repeat;
+    margin-bottom: 2reml;
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 75px;
+  }
+
+  .hero-container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-text{
+    text-align: center;
+    color: whitesmoke;
+  }
+
+  .recipes-list{
+    display: grid;
+    gap: 2rem 1rem;
+    padding-bottom: 3rem;
+  }
+  
+  .recipe{
+    display: block;
+  }
+
+  .recipe-img{
+    height: 15rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+
+  .recipe h5{
+    margin-bottom: 0;
+    line-height: 1;
+    color: #343a40;
+  }
+
+  .recipe p{
+    margin-bottom: 0;
+    line-height: 1;
+    margin-top: 0.5rem;
+  }
+
+  .form-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  form {
+    width: 90%;
+    max-width: 600px;
+  }
+
+  .input-group {
+    margin-bottom: 30px;
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    outline: 0;
+    border: 1px solid #343a40;
+    color: #343a40;
+    background: transparent;
+    font-size: 15px;
+  }
+
+  label {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 10px;
+    color: #343a40;
+    cursor: text;
+    transition: 0.2s;
+  }
+
+  button {
+    padding: 10px 0;
+    color: #343a40;
+    outline: none;
+    background: transparent;
+    border: 1px solid #343a40;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  input:focus~label,
+  input:valid~label {
+    top: -35px;
+    font-size: 14px;
+  }
+
+  textarea:focus~label,
+  textarea:valid~label {
+    top: -35px;
+    font-size: 14px;
+  }
+
+  .thanks {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media screen and (min-width: 576px) {
+    .recipes-list{
+      grid-template-columns: 1fr 1fr;
+    }
+    .recipe-img{
+      height: 10rem;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    .recipe h5{
+      font-size: 1.15rem;
+    }
+    .recipes-list{
+      grid-template-columns: 1fr 1fr 1fr;
+    }
   }
   
   /* Responsive styles */

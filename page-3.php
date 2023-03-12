@@ -8,15 +8,16 @@
     <meta name="generator" content="Hugo 0.80.0">
     <title>Starter Template · Bootstrap v5.0</title>
     <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="mystyle.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
   </head>
   <body>
     
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
       <div class="container">
-        <a class="navbar-brand" href="index.php">Site Title</a>
+        <a class="navbar-brand" href="index.php">DietDish</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,37 +28,43 @@
           <span class="d-flex">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="page-1.php">Page 1</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="page-3.php">Page 2</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="page-3.php">Page 3</a>
+                <a class="nav-link" aria-current="page" href="page-3.php">Contact Us</a>
               </li>
             </ul>
           </span>
         </div>
       </div>
     </nav>
-
-
-<h1>Contact us</h1>
-<form method="POST" name="contactform" action="contact-form-handler.php"> 
-<p>
-<label for='name'>Your Name:</label> <br>
-<input type="text" name="name">
-</p>
-<p>
-<label for='email'>Email Address:</label> <br>
-<input type="text" name="email"> <br>
-</p>
-<p>
-<label for='message'>Message:</label> <br>
-<textarea name="message"></textarea>
-</p>
-<input type="submit" value="Submit"><br>
-</form>
+    
+    <div class="form-container">
+      <form method="POST" name="contactform" action="contact-form-handler.php">
+        <div class="input-group">
+          <input type="text" name="name" required>
+          <label for='name'>Your Name</label>
+        </div>
+        <div class="input-group">
+          <input type="text" name="email" required>
+          <label for='email'>Email Address</label>
+        </div>
+        <div class="input-group">
+          <input type="text" name="phone" required>
+          <label for='phone'>Phone Number</label>
+        </div>
+        <div class="input-group">
+          <input type="text" name="address" required>
+          <label for='address'>Address</label>
+        </div>
+        <div class="input-group">
+          <input type="text" name="country" required>
+          <label for='country'>Country</label>
+        </div>
+        <div class="input-group">
+          <textarea name="message" required></textarea>
+          <label for='message'>Message</label>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
 
 </main><!-- /.container -->
     <script src="js/bootstrap.bundle.min.js"></script>
